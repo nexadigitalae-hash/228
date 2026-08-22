@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Local Font Declarations (Tajawal Self-Hosted)
+   ========================================================================== */
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tajawal-v12-latin-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/tajawal-v12-latin-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/tajawal-v12-latin-700.woff2') format('woff2');
+}
+
+@theme {
+  /* ==========================================================================
+     UAE Future & Maritime Sovereign Identity (هوية المستقبل والابتكار)
+     ========================================================================== */
+  --color-uae-deep-blue: #0A2540;   /* أزرق كحلي عميق - يعبر عن الموثوقية والاستقرار */
+  --color-uae-emerald: #0D5C46;     /* أخضر زمردي داكن - نماء وازدهار */
+  --color-uae-champagne: #C5A059;  /* ذهبي شامبين راقي - الأصالة والريادة */
+  --color-uae-gold-soft: #D4AF37;   /* ذهبي فاتح للتأطير والتمييز */
+
+  /* Functional / status colors */
+  --color-success: #0D5C46;     /* أخضر زمردي — معتمد / تم بنجاح */
+  --color-processing: #C5A059;  /* ذهبي — قيد الإجراء */
+  --color-urgent: #9E2A2B;      /* أحمر دافئ — هام / عاجل */
+  --color-error: #9E2A2B;       /* رسائل الخطأ */
+
+  /* Semantic tokens */
+  --color-background: #F4F6F8;      /* رمادي سحابي ناعم وحديث جداً */
+  --color-surface: #ffffff;
+  --color-card: #ffffff;
+  --color-card-foreground: #0A2540;
+  --color-foreground: #0A2540;     /* لون النصوص الرئيسي */
+  --color-muted: #E2E8F0;
+  --color-muted-foreground: #4A5568;/* لون النصوص الفرعي */
+  --color-secondary: #EDF2F7;
+  --color-secondary-foreground: #0A2540;
+
+  /* Primary & Accent tokens */
+  --color-primary: #0A2540;         /* الأزرق الكحلي هو الأساسي */
+  --color-primary-foreground: #ffffff;
+
+  --color-accent: #C5A059;          /* الذهبي للزر الرئيسي والتميز */
+  --color-accent-foreground: #ffffff;
+  --color-highlight: #0D5C46;       /* الأخضر الزمردي للتفاصيل */
+  --color-border: #CBD5E1;
+
+  --font-sans: "Tajawal", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Tajawal", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --radius: 0.625rem;
+
+  --shadow-soft: 0 4px 20px -4px rgba(10, 37, 64, 0.06);
+  --shadow-card: 0 10px 30px -5px rgba(10, 37, 64, 0.10);
+  --shadow-glow: 0 20px 40px -15px rgba(197, 160, 89, 0.25);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 0.375rem;
+  }
+}
+
+/* ==========================================================================
+   Page Container Utility
+   ========================================================================== */
+@utility container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-page {
+    padding-inline: 3.5rem;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* تدرج الكحلي الملكي مع الذهبي الدافئ */
+  .text-gradient {
+    background: linear-gradient(135deg, #0A2540 0%, #C5A059 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .mesh-bg {
+    background-color: var(--color-background);
+    background-image:
+      radial-gradient(at 10% 15%, color-mix(in srgb, var(--color-primary) 5%, transparent) 0px, transparent 40%),
+      radial-gradient(at 90% 85%, color-mix(in srgb, var(--color-accent) 8%, transparent) 0px, transparent 40%);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* حالات المعاملات */
+  .status-success {
+    background-color: color-mix(in srgb, var(--color-success) 10%, transparent);
+    color: var(--color-success);
+  }
+  .status-processing {
+    background-color: color-mix(in srgb, var(--color-processing) 15%, transparent);
+    color: var(--color-processing);
+  }
+  .status-urgent {
+    background-color: color-mix(in srgb, var(--color-urgent) 10%, transparent);
+    color: var(--color-urgent);
+  }
+
+  .form-error {
+    color: var(--color-error);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    margin-top: 0.375rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .input-error {
+    border-color: var(--color-error) !important;
+  }
+  .input-error:focus {
+    outline-color: var(--color-error) !important;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
