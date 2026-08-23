@@ -30,16 +30,16 @@ const CtaSection = lazy(() =>
 export const Route = createFileRoute("/")({
   head: () => {
     const baseHead = buildHead({
-      title: "منصة سندك | تقديم وتوثيق شكاوى المستهلك ضد الشركات الخاصة",
+      title: "منصة سندك | رفع وتقديم شكاوى المستهلك في الإمارات",
       description:
-        "هل واجهت مشكلة تجارية؟ قدّم شكواك ورسالتك الآن عبر منصة سندك لتوثيق ومتابعة شكاوى المستهلكين ضد المنشآت والشركات الخاصة في الإمارات بسهولة وشفافية.",
+        "منصة سندك منصة رقمية مستقلة تساعد المستهلكين في الإمارات على رفع شكوى وتقديم ملاحظاتهم حول المنتجات والخدمات والشركات بطريقة سهلة ومنظمة.",
       path: "/",
       jsonLd: [
         {
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "منصة سندك",
-          alternateName: "المنصة الرقمية الموحدة لتوثيق الشكاوى التجارية بالإمارات",
+          alternateName: "منصة سندك لشكاوى المستهلك",
           inLanguage: "ar",
           url: "https://www.sanadak-ae.com",
         },
@@ -55,13 +55,7 @@ export const Route = createFileRoute("/")({
             addressCountry: "AE",
             addressRegion: "Dubai / Abu Dhabi",
           },
-          aggregateRating: {
-            "@type": "AggregateRating",
-            ratingValue: "4.9",
-            reviewCount: "1420",
-            bestRating: "5",
-            worstRating: "1",
-          },
+
         },
         {
           "@context": "https://schema.org",
@@ -70,8 +64,8 @@ export const Route = createFileRoute("/")({
           serviceType: "توثيق وتسوية شكاوى المستهلكين",
           provider: {
             "@type": "Organization",
-            name: "منصة حماية المستهلك الإمارات",
-            url: "https://www.emirates-report.com",
+            name: "منصة سندك",
+            url: "https://www.sanadak-ae.com",
           },
           areaServed: {
             "@type": "Country",
@@ -156,7 +150,7 @@ function HomePage() {
   return (
     <>
       {/* الأقسام الهامة فوراً لتحقيق أقصى سرعة LCP */}
-      <HeroSection onPrimaryClick={scrollToForm} />
+      <HeroSection />
       <ComplaintFormSection />
 
       {/* الأقسام الثانوية عبر Suspense */}

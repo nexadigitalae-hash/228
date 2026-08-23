@@ -40,11 +40,11 @@ export default function Hero() {
 
         
         {/* العنوان الرئيسي */}
-        <h1 className="max-w-4xl text-3xl font-extrabold text-[var(--color-foreground)] sm:text-4xl md:text-6xl leading-[1.25]">
-          منصة <span className="text-4xl sm:text-5xl md:text-7xl font-black text-gradient inline-block mx-1">سندك</span> الرقمية
-          <br />
-          <span className="text-[var(--color-primary)]">حقك مصان</span>
-        </h1>
+      <h1 className="max-w-4xl text-3xl font-extrabold text-[var(--color-foreground)] sm:text-4xl md:text-6xl leading-[1.25]">
+  منصة <span className="text-4xl sm:text-5xl md:text-7xl font-black text-gradient inline-block mx-1">سندك</span>
+  <br />
+  <span className="text-[var(--color-primary)]">لرفع وتقديم شكاوى المستهلك</span>
+</h1>
 
         {/* الوصف */}
         <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--color-muted-foreground)]">
@@ -75,7 +75,7 @@ export default function Hero() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm">
           <div className="flex items-center gap-2 text-[var(--color-foreground)] font-semibold">
             <Clock className="h-4 w-4 text-[var(--color-primary)]" />
-            رد أولي خلال 24 ساعة عمل
+        استقبال الطلبات على مدار الساعة 
           </div>
           <div className="h-4 w-px bg-[var(--color-border)] hidden sm:block" />
           <div className="flex items-center gap-2 text-[var(--color-foreground)] font-semibold">
@@ -85,7 +85,7 @@ export default function Hero() {
           <div className="h-4 w-px bg-[var(--color-border)] hidden sm:block" />
           <div className="flex items-center gap-2 text-[var(--color-foreground)] font-semibold">
             <Scale className="h-4 w-4 text-[var(--color-primary)]" />
-            حيادية وسيادة القانون
+        تنظيم واضح لبيانات الشكوى
           </div>
         </div>
 
