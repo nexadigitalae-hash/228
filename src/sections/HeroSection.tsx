@@ -1,23 +1,40 @@
 "use client";
 
-// Local fallback for Link if 'next/link' isn't available
-const Link = (props: any) => <a {...props} />;
-
+import { Link, useNavigate, useLocation } from "@tanstack/react-router";
 import { 
   FileText, 
   ShieldCheck, 
   ArrowLeft,
   Scale,
   Smartphone,
-  ShoppingBag,
-  Building2,
   CreditCard,
-  Building,
+  Building2,
   HelpCircle,
   Clock,
 } from "lucide-react";
 
 export default function Hero() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleScrollToForm = (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // إذا كان المستخدم حالياً في الصفحة الرئيسية
+    if (location.pathname === "/") {
+      const element = document.getElementById("complaint-form");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // في حال لم يجد العنصر مباشرة، يحدث الهاش في الـ URL
+        window.location.hash = "complaint-form";
+      }
+    } else {
+      // إذا كان في صفحة أخرى، ينقل إلى الرئيسية مع الهاش
+      navigate({ to: "/", hash: "complaint-form" });
+    }
+  };
+
   return (
     <section className="relative overflow-hidden bg-[var(--color-background)] pt-10 pb-20 md:pt-16 md:pb-28 border-b border-[var(--color-border)]">
       
@@ -38,32 +55,32 @@ export default function Hero() {
 
       <div className="container-page relative z-10 flex flex-col items-center text-center">
 
-        
         {/* العنوان الرئيسي */}
-      <h1 className="max-w-4xl text-3xl font-extrabold text-[var(--color-foreground)] sm:text-4xl md:text-6xl leading-[1.25]">
-  منصة <span className="text-4xl sm:text-5xl md:text-7xl font-black text-gradient inline-block mx-1">سندك</span>
-  <br />
-  <span className="text-[var(--color-primary)]">لرفع وتقديم شكاوى المستهلك</span>
-</h1>
+        <h1 className="max-w-4xl text-3xl font-extrabold text-[var(--color-foreground)] sm:text-4xl md:text-6xl leading-[1.25]">
+          منصة <span className="text-4xl sm:text-5xl md:text-7xl font-black text-gradient inline-block mx-1">سندك</span>
+          <br />
+          <span className="text-[var(--color-primary)]">لرفع وتقديم شكاوى المستهلك</span>
+        </h1>
 
         {/* الوصف */}
         <p className="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-[var(--color-muted-foreground)]">
-        منصة رقمية لتقديم شكاوى المستهلكين وملاحظاتهم بسهولة، مع تنظيم بيانات الشكوى وتسهيل متابعة الطلب من مكان واحد.
+          منصة رقمية لتقديم شكاوى المستهلكين وملاحظاتهم بسهولة، مع تنظيم بيانات الشكوى وتسهيل متابعة الطلب من مكان واحد.
         </p>
 
         {/* أزرار الإجراءات */}
         <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-   <Link
-  href="/complaint/new"
-  className="group inline-flex items-center justify-center gap-2.5 rounded-[var(--radius)] bg-[var(--color-primary)] px-8 py-4 text-base font-bold text-white shadow-soft transition-all duration-300 ease-out hover:brightness-90 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] active:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]"
->
-  <FileText className="h-5 w-5 transition-transform duration-300 group-hover:rotate-3" />
-  تقديم شكوى جديدة
-  <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
-</Link>
+          <a
+            href="/#complaint-form"
+            onClick={handleScrollToForm}
+            className="group inline-flex items-center justify-center gap-2.5 rounded-[var(--radius)] bg-[var(--color-primary)] px-8 py-4 text-base font-bold text-white shadow-soft transition-all duration-300 ease-out hover:brightness-90 hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] active:scale-[0.98] active:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)] cursor-pointer"
+          >
+            <FileText className="h-5 w-5 transition-transform duration-300 group-hover:rotate-3" />
+            تقديم شكوى جديدة
+            <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-1" />
+          </a>
 
           <Link
-            href="/guide"
+            to="/faq"
             className="inline-flex items-center justify-center gap-2 rounded-[var(--radius)] border border-[var(--color-border)] bg-white px-7 py-4 text-base font-semibold text-[var(--color-foreground)] shadow-sm transition-all duration-200 hover:bg-[var(--color-muted)] hover:border-[var(--color-primary)]/40"
           >
             <HelpCircle className="h-5 w-5 text-[var(--color-primary)]" />
@@ -75,7 +92,7 @@ export default function Hero() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm">
           <div className="flex items-center gap-2 text-[var(--color-foreground)] font-semibold">
             <Clock className="h-4 w-4 text-[var(--color-primary)]" />
-        استقبال الطلبات على مدار الساعة 
+            استقبال الطلبات على مدار الساعة 
           </div>
           <div className="h-4 w-px bg-[var(--color-border)] hidden sm:block" />
           <div className="flex items-center gap-2 text-[var(--color-foreground)] font-semibold">
@@ -85,19 +102,18 @@ export default function Hero() {
           <div className="h-4 w-px bg-[var(--color-border)] hidden sm:block" />
           <div className="flex items-center gap-2 text-[var(--color-foreground)] font-semibold">
             <Scale className="h-4 w-4 text-[var(--color-primary)]" />
-        تنظيم واضح لبيانات الشكوى
+            تنظيم واضح لبيانات الشكوى
           </div>
         </div>
 
-        {/* القطاعات المشمولة — شارات دائرية عائمة بدل البطاقة */}
+        {/* القطاعات المشمولة */}
         <div className="mt-14 w-full max-w-3xl">
           <p className="text-xs font-bold text-[var(--color-muted-foreground)] mb-5 uppercase tracking-wide">
-         الشكاوى تشمل كل من القطاعات :
+            الشكاوى تشمل كل من القطاعات :
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             {[
               { Icon: Smartphone, text: "الاتصالات والتقنية" },
-              
               { Icon: CreditCard, text: "الخدمات المالية" },
               { Icon: Building2, text: "المتاجر والأسواق" },
             ].map((item, index) => (
@@ -119,5 +135,4 @@ export default function Hero() {
   );
 }
 
-// Named Export للتوافق مع التصدير المطلوبة
 export { Hero as HeroSection };
